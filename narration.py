@@ -1,3 +1,5 @@
+
+
 action('SetNarration(I am going to find the RedKey )')
 action('ShowNarration()')
 action('Wait(3)')
