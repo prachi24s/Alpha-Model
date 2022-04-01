@@ -1,4 +1,3 @@
-import sys
 def check_for_success(command):
 
     # Keep getting responces until the success of fail the given command is received
