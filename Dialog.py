@@ -55,22 +55,22 @@ class Dialog:
                 self.setDialog('Kate: Yes, I can see that.')
                 self.setDialog('Sunny: Just enter into that door,you can get the healing potion there.')
                 self.setDialog('Kate: Thank you so much!')
-                self.setDialog('Sunny: No problem. Take care! \\n[Fight | Fight]')
+                self.setDialog('Sunny: No problem. Take care! \\n[Go | Go]')
                 self.showDialog()
-                choice = waitForChoice(['Fight'])
-                if choice == 'Fight':
+                choice = waitForChoice(['Go'])
+                if choice == 'Go':
                         self.hideDialog()
                         return True
 
         def talktosteve(self, character_left, character_right):
                 self.setLeft(character_left)
                 self.setRight(character_right)
-                self.setDialog('Bob: Who are you?')
+                self.setDialog('Steve: Who are you?')
                 action(f'Wait(2.5)')
                 self.setDialog('Kate: I am Kate')
-                self.setDialog('Bob: What are you doing here?')
+                self.setDialog('Steve: What are you doing here?')
                 self.setDialog('Kate: I am here to take that key and handover it to the king.')
-                self.setDialog('Bob:  I want the key...just handover it to me.')
+                self.setDialog('Steve:  I want the key...just handover it to me.')
                 self.setDialog('Kate: No...just go away from my way\\n[Fight | Fight]')
                 self.showDialog()
                 choice = waitForChoice(['Fight'])
@@ -81,15 +81,15 @@ class Dialog:
         def talktojames(self, character_left, character_right):
                 self.setLeft(character_left)
                 self.setRight(character_right)
-                self.setDialog('Bob: Who are you?')
+                self.setDialog('james: Hello Kate... How are you ?')
                 action(f'Wait(2.5)')
-                self.setDialog('Kate: I am Kate')
-                self.setDialog('Bob: What are you doing here?')
-                self.setDialog('Kate: I am here to take that key and handover it to the king.')
-                self.setDialog('Bob:  I want the key...just handover it to me.')
-                self.setDialog('Kate: No...just go away from my way\\n[Fight | Fight]')
+                self.setDialog('Kate: Hello james.. I am good')
+                self.setDialog('james: Did you find the Key Kate ?')
+                self.setDialog('Kate: Yes....james ')
+                self.setDialog('james: Handover the key to me.')
+                self.setDialog('Kate: Hear is the Key\\n[ Exit| Exit]')
                 self.showDialog()
-                choice = waitForChoice(['Fight'])
-                if choice == 'Fight':
+                choice = waitForChoice(['Exit'])
+                if choice == 'Exit':Exit
                         self.hideDialog()
                         return True
