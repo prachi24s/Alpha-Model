@@ -10,7 +10,7 @@ def create_character(character_name, body_Type):
 def character_clothing(character_name, Hairstyle, Outfit):
     action('SetHairStyle('+ character_name +', ' + Hairstyle +')')
     action('SetClothing('+ character_name +', ' + Outfit +')')
-
+    
 def set_character_position(character_name, position_name):
      action('SetPosition(' + character_name + ', ' + position_name + ')')
 
@@ -62,6 +62,7 @@ def talktobob(character1, character2):
     if select == 'Attack':
         hide_dialog()
         draw('Kate', 'Sword')
+        draw('Bob', 'bob_sword')
         character_attack('Bob','Kate')
         character_attack('Kate', 'Bob')
         character_attack('Bob', 'Kate')
@@ -114,17 +115,9 @@ def talktosteve(character1, character2):
          take_item('Steve', 'GreenPotion', 'Blacksmith.Anvil' )
          give_item('GreenPotion', 'Steve', 'Kate')
          give_item('Coin', 'Kate', 'Steve')
+         action('AddToList(GreenPotion, "GreenPotion for getting heal")')
          character_drink('Kate')
-    '''
-    elif 'GreenPotion' in input():
-            hide_dialog()
-            take_item('Steve', 'GreenPotion', 'Blacksmith.Anvil')
-            give_item('GreenPotion', 'Steve', 'Kate')
-            set_right(character1)
-            set_left(character2)
-            show_dialog()
-         
-      '''
+
          
 def talktotom(character1, character2):
      character_walk(character1, character2)
@@ -141,6 +134,7 @@ def talktotom(character1, character2):
      if select == 'Attack':
         hide_dialog()
         draw('Kate', 'Sword')
+        draw('Tom', 'tom_sword')
         character_attack('Kate', 'Tom')
         character_attack('Tom', 'Kate')
         character_attack_success('Kate', 'Tom')
@@ -153,25 +147,24 @@ def talktolily(character1, character2):
      character_walk(character1, character2)
      set_right(character1)
      set_left(character2)
-     set_dialog('Lily: Kate, You found the key...I want it..just give it to me otherwise it will not be good for you.')
-     set_dialog('Kate: No, I cant give it to you.')
+     set_dialog('Lily: You found the key...I want it..just give it to me otherwise it will not be good for you.')
+     set_dialog('Kate: No.. I cant give it to you.')
      set_dialog('Lily: Okay! Lets see...\\n[ Attack | Attack]')
      show_dialog()
      while 1:
-         if 'continue' in input():
-            select ='continue'
+         if 'Attack' in input():
+            select ='Attack'
             break
      if select == 'Attack':
         hide_dialog()
         draw('Kate', 'Sword')
+        draw('Lily', 'lily_sword')
         character_attack('Lily', 'Kate')
         character_attack('Kate', 'Lily')
         character_attack('Kate', 'Lily')
         character_attack_success('Kate', 'Lily')
         die_character('Lily')
         pocket('Kate', 'Sword')
-        exit_place('Kate', 'AlchemyShop.BackDoor')
-        enter_place('Kate', 'CastleBedroom.Door')
 
 
 def talktokim( character1, character2):
@@ -180,11 +173,11 @@ def talktokim( character1, character2):
     set_left(character2)
     set_dialog('Kim: Who are you?')
     set_dialog('Kate: I am Kate')
-    set_dialog('Kim: why did you come hear ?')
+    set_dialog('Kim: why did you come here ?')
     set_dialog('Kate: I need your help....')
     set_dialog('Kim:  What help do you need ?')
-    set_dialog('Kate: I need direction of a place for theat i need Campass can you please give me campass')
-    set_dialog('Kim:  ok..I will help you..heare is the compass\\n[continue | continue]')
+    set_dialog('Kate: I need direction of a place for that I need Campass can you please give me campass')
+    set_dialog('Kim:  ok..I will help you..here is the compass\\n[continue | continue]')
     show_dialog()
     while 1:
         if 'continue' in input():
@@ -194,6 +187,7 @@ def talktokim( character1, character2):
         hide_dialog()
         take_item('Kim', 'Compass', 'Tavern.RoundTable' )
         give_item('Compass', 'Kim', 'Kate')
+        action('AddToList(Compass, "Compass for getting direction")')
         pocket('Kate', 'Compass')
 
 def talktojerry(character1, character2):
@@ -205,8 +199,9 @@ def talktojerry(character1, character2):
     while 1:
         if 'RedPotion' in input():
             hide_dialog()
-            take_item('Jerry', 'RedPotion', 'Courtyard.SmallStall')
+            take_item('Jerry', 'RedPotion', 'Courtyard.BigStall')
             give_item('RedPotion', 'Jerry', 'Kate')
+            action('AddToList(RedPotion, "RedPotion is poison")')
             character_drink('Kate')
             die_character('Kate')
             set_position('BlueKey', 'Courtyard.Barrel')
@@ -214,7 +209,7 @@ def talktojerry(character1, character2):
             break
         elif 'Bottle' in input():
             hide_dialog()
-            take_item('Jerry', 'Bottle', 'Courtyard.SmallStall')
+            take_item('Jerry', 'Bottle', 'Courtyard.BigStall')
             give_item('Bottle', 'Jerry', 'Kate')
             set_right(character1)
             set_left(character2)
@@ -229,34 +224,16 @@ def talktojerry(character1, character2):
                     character_attack_success('Kate', 'Jerry')
                     exit_place('Kate', 'Courtyard.Gate' )
                     enter_place('Kate', 'CastleCrossroads.WestEnd')
+                    exit_place('Kate', 'CastleCrossroads.Gate')
+                    enter_place('Kate', 'CastleBedroom.Door')
                     break
-        
+            break
 
-def talktoMike( character1, character2):
-    character_walk(character1, character2)
-    set_right(character1)
-    set_left(character2)
-    set_dialog('Mike: Hello Kate your back to the kingdom')
-    set_dialog('Kate: Yes...james i got the lost key')
-    set_dialog('Mike: go ... meet the king he will appreciate you')
-    set_dialog('Kate:  yes i will handover the key to king \\n[ Go | Go]')
-    show_dialog()
-    while 1:
-        if 'continue' in input():
-           select ='continue'
-           break
-    if select == 'continue':
-        hide_dialog()
-        exit_place('Kate', 'CastleCrossroads.Gate')
-        enter_place('Kate', 'CastleBedroom.Door')
-        
-         
-
-def talktojames( character1, character2):
+def talktojames(character1, character2):
      character_walk(character1, character2)
      set_right(character1)
      set_left(character2)
-     set_dialog('Kate: Hello king James...I found the lost key')
+     set_dialog('Kate: Hello King James...I found the lost key')
      set_dialog('James: Ohh...Thats great! Where is it?')
      set_dialog('Kate: Here it is')
      set_dialog('James: Thank you so much Kate.I want to give you reward for your work.\\n[continue | continue]')
@@ -269,21 +246,8 @@ def talktojames( character1, character2):
      if select == 'continue':
          hide_dialog()
          give_item('BlueKey', 'Kate', 'James')
-         
-         
-def talktorobert( character1, character2):
-     character_walk(character1, character2)
-     set_right(character1)
-     set_left(character2)
-     set_dialog('James: Robert, give me things which are in the chest?')
-     set_dialog('Robert: Sure King!\\n[continue | continue]')
-     show_dialog()
-     while 1:
-         if 'continue' in input():
-            select ='continue'
-            break
-     if select == 'continue':
-         hide_dialog()
+         action('Put(James, BlueKey, CastleBedroom.SmallTable)')
+         take_item('James', 'GoldCup', 'CastleBedroom.SmallTable')
          give_item('GoldCup', 'James', 'Kate')
          
 

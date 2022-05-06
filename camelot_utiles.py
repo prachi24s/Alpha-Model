@@ -49,7 +49,7 @@ def start_game():
     create_item('GreenPotion', 'GreenPotion')
     set_position('GreenPotion', 'Blacksmith.Anvil')
     create_item('Apple', 'Apple')
-    set_position('Apple','Blacksmith.Table.Left)
+    set_position('Apple','Blacksmith.Table.Left')
     enableIcon('Select_Apple', 'Select', 'Apple', "Apple", True)
     enableIcon('Select_GreenPotion', 'Select', 'GreenPotion', "GreenPotion", True)
     enableIcon('Exit_Blacksmith', 'Open', 'Blacksmith.BackDoor', 'Enter the ForestPath', True)
@@ -58,6 +58,8 @@ def start_game():
     create_character('Tom', 'D')
     character_clothing('Tom', 'Short', 'Warlock')
     set_character_position('Tom', 'ForestPath.DirtPile')
+    create_item('tom_sword', 'Sword')
+    set_position('tom_sword', 'Tom')
     enableIcon('Talk_Tom', 'Talk', 'Tom', "Talk to the Tom", True)
     enableIcon('Exit_ForestPath', 'Open', 'ForestPath.WestEnd', 'Enter the Tavern', True)
     
@@ -67,9 +69,8 @@ def start_game():
     
     create_place('AlchemyShop', 'AlchemyShop')
     create_character('Lily', 'F')
-    character_clothing('Lily', 'Long', 'Witch')
+    character_clothing('Lily', 'Long', 'Priest')
     set_character_position('Lily', 'AlchemyShop.LeftBookcase')
-    set_character_position('Kate', 'Storage')
     create_item('lily_sword', 'Sword')
     set_position('lily_sword', 'Lily')
     enableIcon('Talk_Lily', 'Talk', 'Lily', "Talk to the Lily", True)
@@ -82,7 +83,6 @@ def start_game():
     create_place('Tavern', 'Tavern')
     create_character('Kim', 'D')
     character_clothing('Kim', 'Short', 'Peasant')
-    #set_character_position('Kate', 'Tavern')
     set_character_position('Kim', 'Tavern.Chair')
     enableIcon('Talk_Kim', 'Talk', 'Kim', "Talk to the Kim", True)
     create_item('Compass', 'Compass')
@@ -94,12 +94,12 @@ def start_game():
     
     create_place('Courtyard', 'Courtyard')
     create_character('Jerry', 'D')
-    character_clothing('Jerry', 'Mage', 'Beggar')
-    set_character_position('Jerry', 'Courtyard.Barrel')
+    character_clothing('Jerry', 'Mage', 'Peasant')
+    set_character_position('Jerry', 'Courtyard.BigStall')
     create_item('RedPotion', 'RedPotion')
-    set_position('RedPotion', 'Courtyard.SmallStall')
+    set_position('RedPotion', 'Courtyard.BigStall.Left')
     create_item('Bottle', 'Bottle')
-    set_position('Bottle', 'Courtyard.SmallStall')
+    set_position('Bottle', 'Courtyard.BigStall.Right')
     enableIcon('Talk_Jerry', 'Talk', 'Jerry', "Talk to the Jerry", True)
     enableIcon('Exit_Courtyard', 'Open', 'Courtyard.Gate', 'Enter the CastleCrossroads', True)
     
@@ -107,21 +107,15 @@ def start_game():
     create_character('Mike', 'D')
     character_clothing('Mike', 'Long', 'HeavyArmour')
     enableIcon('Talk_Mike', 'Talk', 'Mike', "Talk to the mike", True)
-    enableIcon('Exit_CastleCrossroads', 'Open', 'CastleCrossroads.EastEnd', 'Enter the CastleBedroom', True)
+    enableIcon('Exit_CastleCrossroads', 'Open', 'CastleCrossroads.Gate', 'Enter the CastleBedroom', True)
     
     create_place('CastleBedroom', 'CastleBedroom')
     create_character('James', 'B')
     character_clothing('James', 'Mage_Beard', 'King')
     set_character_position('James', 'CastleBedroom.Bed')
     enableIcon('Talk_James', 'Talk', 'James', "Talk to the James", True)
-    
-    create_character('Robert', 'D')
-    character_clothing('Robert', 'Mage_Beard', 'Noble')
-    set_character_position('Robert', 'CastleBedroom.Closet')
-    enableIcon('Talk_Robert', 'Talk', 'Robert', "Talk to the Robert", True)
     create_item('GoldCup', 'GoldCup')
-    set_position('GoldCup', 'CastleBedroom.Chest')
-    enableIcon('Select_GoldCup', 'Select', 'GoldCup', "GoldCup", True)
+    set_position('GoldCup', 'CastleBedroom.SmallTable')
     
     
     setCameraFocus('Kate')
@@ -134,7 +128,7 @@ def menu_list(input_string):
     if 'Start' in input_string:
         action('HideMenu()')
         narration_msg = "Welcome to THE LOST KEY! Your name is Kate and you found the lost key of King's treasure house. The bandit, Bob wants to get key from you. Your goal is to protect key from bandit and other people and bring that key safely to the King."
-        action(f'SetNarration("{narration_msg}")')
+        action('SetNarration(' + narration_msg + ')')
         action('ShowNarration()')
         action('EnableInput()')
     elif 'Selected Credits' in input_string:
